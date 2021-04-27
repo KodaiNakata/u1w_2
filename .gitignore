@@ -2,4 +2,5 @@ u1w_2/Library/Artifacts/*
 *.log
 u1w_2/Temp/*
 u1w_2/Library/ShaderCache/*
-
+u1w_2/Assets/TextMesh Pro/*
+*.7z
