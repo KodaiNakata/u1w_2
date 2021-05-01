@@ -19,12 +19,12 @@ public class SoundManager
     /// <summary>
     /// BGMの音量
     /// </summary>
-    public float bgmVolume { get; set; }
+    public float bgmVolume { get; set; } = 0.5f;
 
     /// <summary>
     /// SEの音量
     /// </summary>
-    public float seVolume { get; set; }
+    public float seVolume { get; set; } = 0.5f;
 
     /// <summary>
     /// インスタンス

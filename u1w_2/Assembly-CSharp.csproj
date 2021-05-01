@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\GameSceneDirector.cs" />
     <Compile Include="Assets\Scripts\SoundSlider.cs" />
     <Compile Include="Assets\Scripts\SceneButton.cs" />
+    <Compile Include="Assets\Scripts\CloseButton.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

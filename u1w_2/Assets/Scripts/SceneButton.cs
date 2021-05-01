@@ -21,6 +21,7 @@ public class SceneButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     /// </summary>
     public void OnClick()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(sceneName);
     }
 
@@ -30,7 +31,10 @@ public class SceneButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     /// <param name="eventData"></param>
     public void OnPointerEnter(PointerEventData eventData)
     {
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.red;
+        if (sceneName == "GameScene")
+        {
+            transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.red;
+        }
     }
 
     /// <summary>
@@ -39,6 +43,9 @@ public class SceneButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     /// <param name="eventData"></param>
     public void OnPointerExit(PointerEventData eventData)
     {
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
+        if (sceneName == "GameScene")
+        {
+            transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
+        }
     }
 }

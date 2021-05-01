@@ -21,6 +21,19 @@ public class SoundSlider : MonoBehaviour
     private Slider slider;
 
     /// <summary>
+    /// オブジェクトがアクティブになるたびに毎回呼ばれる処理
+    /// </summary>
+    private void OnEnable()
+    {
+        if (soundKind == SoundKind.BGM)
+        {
+            slider.value = SoundManager.instance.bgmVolume;
+            return;
+        }
+        slider.value = SoundManager.instance.seVolume;
+    }
+
+    /// <summary>
     /// スライダーの値変更時の処理
     /// </summary>
     public void OnValueChanged()

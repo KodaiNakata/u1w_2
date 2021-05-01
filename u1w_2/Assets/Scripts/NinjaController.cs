@@ -61,7 +61,7 @@ public class NinjaController : MonoBehaviour
     /// <param name="collision">衝突オブジェクト</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Gimmick"))
+        if (collision.CompareTag("Gimmick") && !ninjaAnim.GetBool("Damaged"))
         {
             // ダメージを受けるアニメーションへ
             ninjaAnim.SetBool("Damaged", true);
@@ -71,6 +71,11 @@ public class NinjaController : MonoBehaviour
 
             // 残機を減らす
             GameSceneDirector.instance.DecreaseZanki();
+        }
+        else if (collision.CompareTag("Goal"))
+        {
+            // クリア
+            GameSceneDirector.instance.isClear = true;
         }
     }
 
@@ -89,15 +94,14 @@ public class NinjaController : MonoBehaviour
     /// </summary>
     private void InputMouse()
     {
-        // ダメージを受けている状態は操作を受け付けない
-        if (ninjaAnim.GetBool("Damaged"))
-        {
-            return;
-        }
-
         // 回転扉を開いていない状態で左クリックしたとき
         if (Input.GetMouseButtonDown(0) && !ninjaAnim.GetBool("RotateDoor"))
         {
+            // ポーズ状態またはダメージ状態は操作を受け付けない
+            if (GameSceneDirector.instance.isPaused || ninjaAnim.GetBool("Damaged"))
+            {
+                return; 
+            }
             // 回転するアニメーションへ
             ninjaAnim.SetBool("RotateDoor", true);
             // ステージの移動処理を一時停止

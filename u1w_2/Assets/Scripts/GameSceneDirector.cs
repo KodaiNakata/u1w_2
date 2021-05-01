@@ -9,16 +9,16 @@ using UnityEngine;
 public class GameSceneDirector : MonoBehaviour
 {
     /// <summary>
-    /// スコア用のテキスト
-    /// </summary>
-    [SerializeField]
-    private GameObject scoreText;
-
-    /// <summary>
     /// 残機用のテキスト
     /// </summary>
     [SerializeField]
     private GameObject zankiText;
+
+    /// <summary>
+    /// ポーズ用のパネル
+    /// </summary>
+    [SerializeField]
+    private GameObject pausePanel;
 
     /// <summary>
     /// 結果用のパネル
@@ -27,14 +27,15 @@ public class GameSceneDirector : MonoBehaviour
     private GameObject resultPanel;
 
     /// <summary>
+    /// 結果表示用のテキスト
+    /// </summary>
+    [SerializeField]
+    private GameObject resultText;
+
+    /// <summary>
     /// インスタンス
     /// </summary>
     public static GameSceneDirector instance { get; private set; }
-
-    /// <summary>
-    /// スコア
-    /// </summary>
-    private int score;
 
     /// <summary>
     /// 残機
@@ -42,15 +43,25 @@ public class GameSceneDirector : MonoBehaviour
     private int zanki;
 
     /// <summary>
+    /// ポーズ状態か
+    /// </summary>
+    public bool isPaused { get; set; }
+
+    /// <summary>
+    /// クリア状態か
+    /// </summary>
+    public bool isClear { get; set; }
+
+    /// <summary>
     /// オブジェクトがアクティブになるたびに毎回呼ばれる処理
     /// </summary>
     private void OnEnable()
     {
         instance = this;
-        score = 100;
         zanki = 5;
-        scoreText.GetComponent<TextMeshProUGUI>().text = "のこり " + score.ToString() + "M";
-        zankiText.GetComponent<TextMeshProUGUI>().text = "ざんき " + zanki.ToString() + "M";
+        isPaused = false;
+        isClear = false;
+        zankiText.GetComponent<TextMeshProUGUI>().text = "ざんき " + zanki.ToString();
     }
 
     /// <summary>
@@ -58,11 +69,19 @@ public class GameSceneDirector : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (HasZanki())
+        // 残機がゼロのとき
+        if (!HasZanki())
         {
-            resultPanel.SetActive(true);
-            Time.timeScale = 0f;
+            IndicateResult("そうは たっせいならず");
+            return;
         }
+        // クリアしたとき
+        else if (isClear)
+        {
+            IndicateResult("そうは たっせい");
+            return;
+        }
+        Pause();
     }
 
     /// <summary>
@@ -73,9 +92,40 @@ public class GameSceneDirector : MonoBehaviour
     {
         if (zanki == 0)
         {
-            return true;
+            return false;
         }
-        return false;
+        return true;
+    }
+
+    /// <summary>
+    /// ポーズ操作をする
+    /// </summary>
+    private void Pause()
+    {
+        // 右クリックしたとき
+        if (Input.GetMouseButtonDown(1))
+        {
+            // ポーズ状態にする
+            pausePanel.SetActive(true);
+            Time.timeScale = 0f;
+            isPaused = true;
+            StageController.instance.canMove = false;
+            GimmickController.instance.canMove = false;
+        }
+    }
+
+    /// <summary>
+    /// リザルトの表示
+    /// </summary>
+    /// <param name="result">結果のテキスト</param>
+    private void IndicateResult(string result)
+    {
+        resultPanel.SetActive(true);
+        resultText.GetComponent<TextMeshProUGUI>().text = result;
+        Time.timeScale = 0f;
+        isPaused = true;
+        StageController.instance.canMove = false;
+        GimmickController.instance.canMove = false;
     }
 
     /// <summary>
@@ -86,6 +136,4 @@ public class GameSceneDirector : MonoBehaviour
         zanki--;
         zankiText.GetComponent<TextMeshProUGUI>().text = "ざんき " + zanki.ToString();
     }
-
-
 }
