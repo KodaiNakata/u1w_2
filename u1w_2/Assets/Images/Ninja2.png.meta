@@ -10,25 +10,25 @@ TextureImporter:
     second: Ninja_Run
   - first:
       213: -5648013058327932691
-    second: Ninja_Start_Throwing
-  - first:
-      213: 4832873329310851695
-    second: Ninja_Finish_Throwing
-  - first:
-      213: -3101435905575606029
     second: Ninja_Damage1
   - first:
-      213: 3643697141594129730
+      213: 4832873329310851695
     second: Ninja_Damage2
   - first:
-      213: -8854318596045454579
+      213: -3101435905575606029
     second: Ninja_Rotate1
   - first:
-      213: -5432049956150302729
+      213: 3643697141594129730
     second: Ninja_Rotate2
   - first:
-      213: 8150347629092971715
+      213: -8854318596045454579
     second: Ninja_Rotate3
+  - first:
+      213: -5432049956150302729
+    second: Ninja_Rotate4
+  - first:
+      213: 8150347629092971715
+    second: Ninja_Rotate5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -194,7 +194,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -215,7 +215,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 128
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -232,11 +232,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ninja_Start_Throwing
+      name: Ninja_Damage1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
+        x: 128
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -253,10 +253,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ninja_Finish_Throwing
+      name: Ninja_Damage2
       rect:
         serializedVersion: 2
-        x: 0
+        x: 160
         y: 96
         width: 32
         height: 32
@@ -269,48 +269,6 @@ TextureImporter:
       bones: []
       spriteID: f626806ffa0d11340800000000000000
       internalID: 4832873329310851695
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ninja_Damage1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3f8268ad97c75f4d0800000000000000
-      internalID: -3101435905575606029
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ninja_Damage2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 24503d1ce33019230800000000000000
-      internalID: 3643697141594129730
       vertices: []
       indices: 
       edges: []
@@ -330,8 +288,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d03439a26242f1580800000000000000
-      internalID: -8854318596045454579
+      spriteID: 3f8268ad97c75f4d0800000000000000
+      internalID: -3101435905575606029
       vertices: []
       indices: 
       edges: []
@@ -340,7 +298,49 @@ TextureImporter:
       name: Ninja_Rotate2
       rect:
         serializedVersion: 2
+        x: 96
+        y: 64
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24503d1ce33019230800000000000000
+      internalID: 3643697141594129730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Rotate3
+      rect:
+        serializedVersion: 2
         x: 0
+        y: 32
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d03439a26242f1580800000000000000
+      internalID: -8854318596045454579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Rotate4
+      rect:
+        serializedVersion: 2
+        x: 96
         y: 32
         width: 96
         height: 32
@@ -358,7 +358,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ninja_Rotate3
+      name: Ninja_Rotate5
       rect:
         serializedVersion: 2
         x: 0

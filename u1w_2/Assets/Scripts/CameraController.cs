@@ -22,21 +22,35 @@ public class CameraController : MonoBehaviour
     /// <summary>
     /// カメラの移動速度
     /// </summary>
-    [SerializeField]
-    private float moveSpeed;
+    private const float cMoveSpeed = 0.05f;
+
+    /// <summary>
+    /// インスタンス
+    /// </summary>
+    public static CameraController instance { get; private set; }
 
     /// <summary>
     /// 移動開始するか
     /// </summary>
     public bool startedMoving { private get; set; }
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// 移動方向
+    /// </summary>
+    public Direction direction { private get; set; }
+
+    /// <summary>
+    /// オブジェクトがアクティブになるたびに毎回呼ばれる処理
+    /// </summary>
     private void OnEnable()
     {
+        instance = this;
         startedMoving = false;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// 毎フレーム呼ばれる更新処理
+    /// </summary>
     private void Update()
     {
         MoveCamera();
@@ -49,10 +63,53 @@ public class CameraController : MonoBehaviour
     {
         if (startedMoving)
         {
-            //TODO：どの方向に移動するかを決定
-            //TODO：目的地までカメラを一定のスピードで移動する
-            //TODO：移動完了後、startMovingをfalseにする
             Vector3 position = transform.position;
+
+            // 上方向へ動くとき
+            if (direction == Direction.UP)
+            {
+                position.y += cMoveSpeed;
+            }
+            else
+            {
+                position.y -= cMoveSpeed;
+            }
+
+            if (FinishedMoving(position))
+            {
+                // カメラの上下移動を終了
+                startedMoving = false;
+
+                // ステージのスクロールを再開
+                StageController.instance.canMove = true;
+                // ギミックのスクロールを再開
+                GimmickController.instance.canMove = true;
+            }
+
+            transform.position = position;
         }
+    }
+
+    /// <summary>
+    /// 移動完了したか
+    /// </summary>
+    /// <returns>true：移動完了、false：移動未完了</returns>
+    private bool FinishedMoving(Vector3 position)
+    {
+        if (direction == Direction.UP)
+        {
+            if (position.y >= maxPosY)
+            {
+                return true;
+            }
+        }
+        else
+        {
+            if (position.y <= minPosY)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

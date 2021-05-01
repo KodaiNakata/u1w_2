@@ -3,18 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
+/// 方向の列挙体
+/// </summary>
+public enum Direction
+{
+    UP,
+    DOWN
+}
+
+/// <summary>
 /// 忍者の操作関連のクラス
 /// </summary>
 public class NinjaController : MonoBehaviour
 {
     /// <summary>
-    /// 方向の列挙体
+    /// 忍者のy座標の最大値
     /// </summary>
-    enum Direction
-    {
-        UP,
-        DOWN
-    }
+    [SerializeField]
+    private float maxPosY;
+
+    /// <summary>
+    /// 忍者のy座標の最小値
+    /// </summary>
+    [SerializeField]
+    private float minPosY;
 
     /// <summary>
     /// 忍者のアニメータ
@@ -44,23 +56,54 @@ public class NinjaController : MonoBehaviour
     }
 
     /// <summary>
+    /// 衝突が起きた瞬間時の処理
+    /// </summary>
+    /// <param name="collision">衝突オブジェクト</param>
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Gimmick"))
+        {
+            // ダメージを受けるアニメーションへ
+            ninjaAnim.SetBool("Damaged", true);
+
+            GimmickController.instance.isSlow = true;
+            StageController.instance.isSlow = true;
+
+            // 残機を減らす
+            GameSceneDirector.instance.DecreaseZanki();
+        }
+    }
+
+    /// <summary>
+    /// 衝突が終わった瞬間時の処理
+    /// </summary>
+    /// <param name="collision">衝突オブジェクト</param>
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        GimmickController.instance.isSlow = false;
+        StageController.instance.isSlow = false;
+    }
+
+    /// <summary>
     /// マウス入力処理
     /// </summary>
     private void InputMouse()
     {
-        // 手裏剣を投げていない状態で左クリックしたとき
-        if (Input.GetMouseButtonDown(0) && !ninjaAnim.GetBool("ThrowShuriken"))
+        // ダメージを受けている状態は操作を受け付けない
+        if (ninjaAnim.GetBool("Damaged"))
         {
-            // 手裏剣を投げるアニメーションへ
-            ninjaAnim.SetBool("ThrowShuriken", true);
-            //TODO：手裏剣生成処理を行う
+            return;
         }
-        // 回転扉を開いていない状態で右クリックしたとき
-        else if (Input.GetMouseButtonDown(1) && !ninjaAnim.GetBool("RotateDoor"))
+
+        // 回転扉を開いていない状態で左クリックしたとき
+        if (Input.GetMouseButtonDown(0) && !ninjaAnim.GetBool("RotateDoor"))
         {
             // 回転するアニメーションへ
             ninjaAnim.SetBool("RotateDoor", true);
-            //TODO：ステージの移動処理を一時停止
+            // ステージの移動処理を一時停止
+            StageController.instance.canMove = false;
+            // ギミックの移動処理を一時停止
+            GimmickController.instance.canMove = false;
         }
     }
 
@@ -70,14 +113,9 @@ public class NinjaController : MonoBehaviour
     /// <param name="direct">移動の方向</param>
     private void ChangeLoad(Direction direct)
     {
-        if (direct == Direction.UP)
-        {
-            //TODO：カメラの上移動を開始
-        }
-        else
-        {
-            //TODO：カメラの下移動を開始
-        }
+        // カメラの上下移動を開始
+        CameraController.instance.direction = direct;
+        CameraController.instance.startedMoving = true;
     }
 
     /// <summary>
@@ -85,6 +123,7 @@ public class NinjaController : MonoBehaviour
     /// </summary>
     private void PlayNinjaSE(AudioClip audioClip)
     {
+        audioSource.volume = SoundManager.instance.seVolume;
         audioSource.PlayOneShot(audioClip);
     }
 }

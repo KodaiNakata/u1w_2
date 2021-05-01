@@ -15,9 +15,13 @@ public class NinjaAnim : StateMachineBehaviour
     /// <param name="layerIndex">レイヤーの要素番号</param>
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (animator.GetBool("ThrowShuriken"))
+        if (animator.GetBool("RotateDoor"))
         {
-            animator.SetBool("ThrowShuriken", false);
+            animator.SetBool("RotateDoor", false);
+        }
+        else if (animator.GetBool("Damaged"))
+        {
+            animator.SetBool("Damaged", false);
         }
     }
 }

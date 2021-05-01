@@ -20,15 +20,33 @@ public class StageController : MonoBehaviour
     private float minPosX;
 
     /// <summary>
+    /// インスタンス
+    /// </summary>
+    public static StageController instance { get; private set; }
+
+    /// <summary>
     /// ステージの座標
     /// </summary>
     private Vector3 stagePosition;
+
+    /// <summary>
+    /// 動ける状態か
+    /// </summary>
+    public bool canMove { private get; set; }
+
+    /// <summary>
+    /// スロー状態か
+    /// </summary>
+    public bool isSlow { private get; set; }
 
     /// <summary>
     /// オブジェクトがアクティブになるたびに毎回呼ばれる処理
     /// </summary>
     private void OnEnable()
     {
+        instance = this;
+        canMove = true;
+        isSlow = false;
         stagePosition = new Vector3(0f, 0f);
         transform.position = stagePosition;
     }
@@ -46,11 +64,19 @@ public class StageController : MonoBehaviour
     /// </summary>
     private void MoveStage()
     {
-        stagePosition.x -= moveSpeed;
-        if (stagePosition.x <= minPosX)
+        if (canMove)
         {
-            stagePosition.x = 0f;
+            float speed = moveSpeed;
+            if (isSlow)
+            {
+                speed /= 2f;
+            }
+            stagePosition.x -= speed;
+            if (stagePosition.x <= minPosX)
+            {
+                stagePosition.x = 0f;
+            }
+            transform.position = stagePosition;
         }
-        transform.position = stagePosition;
     }
 }
