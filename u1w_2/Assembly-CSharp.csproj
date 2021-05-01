@@ -56,16 +56,16 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\NinjaAnim.cs" />
-    <Compile Include="Assets\Scripts\NinjaController.cs" />
-    <Compile Include="Assets\Scripts\StageController.cs" />
-    <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\CloseButton.cs" />
     <Compile Include="Assets\Scripts\GimmickController.cs" />
+    <Compile Include="Assets\Scripts\SceneButton.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\GameSceneDirector.cs" />
+    <Compile Include="Assets\Scripts\NinjaAnim.cs" />
+    <Compile Include="Assets\Scripts\NinjaController.cs" />
     <Compile Include="Assets\Scripts\SoundSlider.cs" />
-    <Compile Include="Assets\Scripts\SceneButton.cs" />
-    <Compile Include="Assets\Scripts\CloseButton.cs" />
+    <Compile Include="Assets\Scripts\StageController.cs" />
+    <Compile Include="Assets\Scripts\CameraController.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

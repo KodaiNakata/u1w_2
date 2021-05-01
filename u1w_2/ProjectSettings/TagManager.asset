@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Gimmick
   - Goal
+  - BGM
   layers:
   - Default
   - TransparentFX

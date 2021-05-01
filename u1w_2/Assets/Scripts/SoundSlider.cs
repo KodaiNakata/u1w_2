@@ -28,6 +28,7 @@ public class SoundSlider : MonoBehaviour
         if (soundKind == SoundKind.BGM)
         {
             slider.value = SoundManager.instance.bgmVolume;
+            GameObject.FindGameObjectWithTag("BGM").transform.GetComponent<AudioSource>().volume = SoundManager.instance.bgmVolume;
             return;
         }
         slider.value = SoundManager.instance.seVolume;
@@ -41,6 +42,7 @@ public class SoundSlider : MonoBehaviour
         if (soundKind == SoundKind.BGM)
         {
             SoundManager.instance.bgmVolume = slider.value;
+            GameObject.FindGameObjectWithTag("BGM").transform.GetComponent<AudioSource>().volume = SoundManager.instance.bgmVolume;
             return;
         }
         SoundManager.instance.seVolume = slider.value;
