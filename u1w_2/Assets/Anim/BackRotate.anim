@@ -194,7 +194,14 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.16666667
+  - time: 0.25
+    functionName: ChangeLoad
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 0.5
     functionName: PlayNinjaSE
     data: 
     objectReferenceParameter: {fileID: 8300000, guid: ad3367d9befdee6499013f0851ec1b78, type: 3}

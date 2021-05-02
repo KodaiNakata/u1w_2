@@ -22,7 +22,7 @@ public class CameraController : MonoBehaviour
     /// <summary>
     /// カメラの移動速度
     /// </summary>
-    private const float cMoveSpeed = 0.05f;
+    private const float cMoveSpeed = 0.5f;
 
     /// <summary>
     /// インスタンス
