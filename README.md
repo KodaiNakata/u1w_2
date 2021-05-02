@@ -10,9 +10,10 @@ Unity1weekのお題「2」の制作リポジトリです。
 
 # ジャンル
 - 2D
+- アクションレース
 
 # 操作
 - マウス操作のみ
 
 # 投稿先
-投稿先のURLをここに張り付ける
+https://unityroom.com/games/naka-ku_trenin2
