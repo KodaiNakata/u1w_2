@@ -34,7 +34,7 @@ public class GimmickController : MonoBehaviour
     private void OnEnable()
     {
         instance = this;
-        canMove = true;
+        canMove = false;
         isSlow = false;
     }
 

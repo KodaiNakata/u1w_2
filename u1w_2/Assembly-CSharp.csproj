@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CloseButton.cs" />
+    <Compile Include="Assets\Scripts\Transition.cs" />
     <Compile Include="Assets\Scripts\GimmickController.cs" />
     <Compile Include="Assets\Scripts\SceneButton.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Assets\Scripts\SoundSlider.cs" />
     <Compile Include="Assets\Scripts\StageController.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\MyPostEffect.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

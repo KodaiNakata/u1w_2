@@ -33,6 +33,23 @@ public class GameSceneDirector : MonoBehaviour
     private GameObject resultText;
 
     /// <summary>
+    /// ポストエフェクト用のマテリアル
+    /// </summary>
+    [SerializeField]
+    private Material postEffectMaterial;
+
+    /// <summary>
+    /// 遷移時間
+    /// </summary>
+    [SerializeField]
+    private float transitionTime = 1f;
+
+    /// <summary>
+    /// ポストエフェクトの進行状況
+    /// </summary>
+    private readonly int _progress = Shader.PropertyToID("_Progress");
+
+    /// <summary>
     /// インスタンス
     /// </summary>
     public static GameSceneDirector instance { get; private set; }
@@ -62,6 +79,18 @@ public class GameSceneDirector : MonoBehaviour
         isPaused = false;
         isClear = false;
         zankiText.GetComponent<TextMeshProUGUI>().text = "ざんき " + zanki.ToString();
+        if (postEffectMaterial != null)
+        {
+            StartCoroutine(DoTransition());
+        }
+    }
+
+    /// <summary>
+    /// オブジェクトがアクティブ解除になるたびに毎回呼ばれる処理
+    /// </summary>
+    private void OnDisable()
+    {
+        Time.timeScale = 1f;
     }
 
     /// <summary>
@@ -72,16 +101,35 @@ public class GameSceneDirector : MonoBehaviour
         // 残機がゼロのとき
         if (!HasZanki())
         {
-            IndicateResult("そうは たっせいならず");
+            IndicateResult("かんそう ならず...");
             return;
         }
         // クリアしたとき
         else if (isClear)
         {
-            IndicateResult("そうは たっせい");
+            IndicateResult("かんそう たっせい!!!");
             return;
         }
         Pause();
+    }
+
+    /// <summary>
+    /// 画面遷移する
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator DoTransition()
+    {
+        float t = -1f;
+        while (t < transitionTime)
+        {
+            float progess = t / transitionTime;
+            postEffectMaterial.SetFloat(_progress, progess);
+            yield return null;
+            t += Time.deltaTime;
+        }
+        postEffectMaterial.SetFloat(_progress, 1f);
+        StageController.instance.canMove = true;
+        GimmickController.instance.canMove = true;
     }
 
     /// <summary>

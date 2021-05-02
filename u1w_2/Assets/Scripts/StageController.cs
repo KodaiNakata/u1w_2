@@ -45,7 +45,7 @@ public class StageController : MonoBehaviour
     private void OnEnable()
     {
         instance = this;
-        canMove = true;
+        canMove = false;
         isSlow = false;
         stagePosition = new Vector3(0f, 0f);
         transform.position = stagePosition;

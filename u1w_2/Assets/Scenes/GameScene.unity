@@ -11136,6 +11136,8 @@ MonoBehaviour:
   pausePanel: {fileID: 130196941}
   resultPanel: {fileID: 641354761}
   resultText: {fileID: 753024129}
+  postEffectMaterial: {fileID: 2100000, guid: d0bdd09ea4081c24daeb0ca3e658d390, type: 2}
+  transitionTime: 1
 --- !u!4 &696580206
 Transform:
   m_ObjectHideFlags: 0
@@ -11148,7 +11150,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &753024129
 GameObject:
@@ -17515,7 +17517,7 @@ RectTransform:
   - {fileID: 641354762}
   - {fileID: 130196942}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -17622,7 +17624,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1128993547
 GameObject:
@@ -18065,7 +18067,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1360228748
 Animator:
@@ -18287,7 +18289,7 @@ Transform:
   - {fileID: 886585979}
   - {fileID: 89818421}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1681276021
 MonoBehaviour:
@@ -19263,7 +19265,7 @@ Transform:
   - {fileID: 303586492}
   - {fileID: 893004027}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2111320087
 MonoBehaviour:
@@ -19362,7 +19364,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2132607478
 MonoBehaviour:
@@ -19381,7 +19383,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1

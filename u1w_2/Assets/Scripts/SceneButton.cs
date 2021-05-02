@@ -21,7 +21,6 @@ public class SceneButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     /// </summary>
     public void OnClick()
     {
-        Time.timeScale = 1f;
         SceneManager.LoadScene(sceneName);
     }
 
